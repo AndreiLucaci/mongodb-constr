@@ -1,12 +1,9 @@
 {
-  "dependencies": {
-    "minobjs": "^1.0.1",
-    "typescript": "^3.7.3"
-  },
   "name": "mongodb-constr",
   "description": "A simple mongo db connections string builder for NodeJS",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "devDependencies": {
     "prettier": "^1.19.1",
     "tslint": "^5.20.1",
@@ -28,10 +25,14 @@
     "type": "git",
     "url": "git+https://github.com/AndreiLucaci/mongodb-constr.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Andrei Lucaci",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/AndreiLucaci/mongodb-constr/issues"
   },
-  "homepage": "https://github.com/AndreiLucaci/mongodb-constr#readme"
+  "homepage": "https://github.com/AndreiLucaci/mongodb-constr#readme",
+  "dependencies": {
+    "minobjs": "^1.0.1",
+    "typescript": "^3.7.3"
+  }
 }

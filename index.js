@@ -1,7 +1,7 @@
 const { ConnectionStringBuilder } = require('./lib/index');
 
 const conStr = new ConnectionStringBuilder()
-  .withCredentials("andrei", "1234")
+  .withCredentials("asdf", "1234")
   .withDatabase("my-database")
   .withUrl({host: 'host1', port: 7777})
   .withReplicas([
