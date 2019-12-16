@@ -4,8 +4,7 @@
       "module": "commonjs",
       "declaration": true,
       "outDir": "./lib",
-      "strict": true,
-      "lib": ["es2017","dom"]
+      "strict": true
     },
     "include": ["src"],
     "exclude": ["node_modules", "**/__tests__/*"]

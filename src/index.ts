@@ -44,8 +44,8 @@ export class ConnectionStringBuilder {
   public withOptions(options: any): ConnectionStringBuilder {
     if (options && !new Objs().isEmpty(options)) {
       this.settings.options = new URLSearchParams();
-      for (let [key, value] of Object.entries(options)) {
-        this.settings.options.append(key, value as string);
+      for (let key of Object.keys(options)) {
+        this.settings.options.append(key, options[key]);
       }
     }
 
