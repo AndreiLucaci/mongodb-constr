@@ -1,7 +1,7 @@
 {
   "name": "mongodb-constr",
   "description": "A simple mongo db connections string builder for NodeJS",
-  "version": "1.1.1",
+  "version": "2.0.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "devDependencies": {
