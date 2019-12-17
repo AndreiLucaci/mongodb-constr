@@ -1,6 +1,6 @@
-const { ConnectionStringBuilder } = require('./lib/index');
+const { MongoConStr } = require('./lib/index');
 
-const conStr = new ConnectionStringBuilder()
+const conStr = MongoConStr.builder()
   .withCredentials("asdf", "1234")
   .withDatabase("my-database")
   .withUrl({host: 'host1', port: 7777})
@@ -17,7 +17,7 @@ const conStr = new ConnectionStringBuilder()
 
 console.log(conStr);
 
-const conStrSettings = new ConnectionStringBuilder({
+const conStrSettings = MongoConStr.create({
   username: 'myusername',
   password: 'mysecretp@a$4w0rd',
   database: 'awesomeDb',
@@ -40,8 +40,8 @@ const conStrSettings = new ConnectionStringBuilder({
     option2: 'value2',
     option3: 'value3'
   }
-}).build();
+});
 
 console.log(conStrSettings);
 
-console.log(new ConnectionStringBuilder().withCredentials('me').withReplicas([{host:'h1', port:1}]).build());
+console.log(MongoConStr.builder().withCredentials('me').withReplicas([{host:'h1', port:1}]).build());

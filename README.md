@@ -40,20 +40,22 @@ class ConnectionStringBuilder {
 }
 ```
 
-The module exports contains the builder (`ConnectionStringBuilder`) and two helper methods:
+The module exports an object:
 ```typescript
-export declare const MongoConnectionStringBuilder: () => ConnectionStringBuilder;
-export declare const MongoConnectionString: (settings: IConnectionStringSettings) => string;
+const MongoConStr: {
+    create: (settings: IConnectionStringSettings) => string;
+    builder: () => ConnectionStringBuilder;
+};
 ```
 
-`MongoConnectionStringBuilder` returns an empty `ConnectionStringBuilder`
-`MongoConnectionString` takes a `IConnectionStringSettings` object, creates a `ConnectionStringBuilder` based on the settings, builds the connection string, and returns it.
+- **`builder`** returns an empty `ConnectionStringBuilder` to be used
+- **`create`** takes a `IConnectionStringSettings` object, creates a `ConnectionStringBuilder` based on the settings, builds the connection string, and returns it.
 
 ## Exammples:
 ```javascript
-const { ConnectionStringBuilder } = require('./lib/index');
+const { MongoConStr } = require('./lib/index');
 
-const conStr = new ConnectionStringBuilder()
+const conStr = MongoConStr.builder()
   .withCredentials("asdf", "1234")
   .withDatabase("my-database")
   .withUrl({host: 'host1', port: 7777})
@@ -71,7 +73,7 @@ const conStr = new ConnectionStringBuilder()
 console.log(conStr);
 // should output: mongodb://asdf1234@host1:7777,host2:7878,host3:9887/my-database?option1=value1&option2=value2&option3=value3
 
-const conStrSettings = new ConnectionStringBuilder({
+const conStrSettings = MongoConStr.create({
   username: 'myusername',
   password: 'mysecretp@a$4w0rd',
   database: 'awesomeDb',
@@ -94,12 +96,12 @@ const conStrSettings = new ConnectionStringBuilder({
     option2: 'value2',
     option3: 'value3'
   }
-}).build();
+});
 
 console.log(conStrSettings);
 // should output: mongodb://myusernamemysecretp@a$4w0rd@host:2018,host2:2019,host3:2020/awesomeDb?option1=value1&option2=value2&option3=value3
 
-console.log(new ConnectionStringBuilder().withCredentials('me').withReplicas([{host:'h1', port:1}]).build());
+console.log(MongoConStr.builder().withCredentials('me').withReplicas([{host:'h1', port:1}]).build());
 // should output: mongodb://me@h1:1
 ```
 

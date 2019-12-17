@@ -4,7 +4,7 @@ import { MongoUrl } from './models/MongoUrl';
 import { IConnectionStringSettings } from './models/IConnectionStringSettings';
 import { ConnectionStringSettings } from './models/ConnectionStringSettings';
 
-export class ConnectionStringBuilder {
+class ConnectionStringBuilder {
   private mongodb: string = 'mongodb://';
   private settings: IConnectionStringSettings;
 
@@ -127,16 +127,20 @@ export class ConnectionStringBuilder {
   }
 }
 
-export const MongoConnectionStringBuilder = (): ConnectionStringBuilder => {
+const MongoConnectionStringBuilder = (): ConnectionStringBuilder => {
   const builder = new ConnectionStringBuilder();
 
   return builder;
 };
 
-export const MongoConnectionString = (
-  settings: IConnectionStringSettings,
-): string => {
+const MongoConnectionString = (settings: IConnectionStringSettings): string => {
   const builder = new ConnectionStringBuilder(settings);
 
   return builder.build();
+};
+
+export const MongoConStr = {
+  create: (settings: IConnectionStringSettings): string =>
+    MongoConnectionString(settings),
+  builder: (): ConnectionStringBuilder => MongoConnectionStringBuilder(),
 };
