@@ -98,7 +98,7 @@ class ConnectionStringBuilder {
     let val = this.mongodb;
 
     if (this.settings.username) {
-      val += `${this.settings.username}${this.settings.password ? '' : '@'}`;
+      val += `${this.settings.username}${this.settings.password ? ':' : '@'}`;
     }
 
     if (this.settings.password) {
