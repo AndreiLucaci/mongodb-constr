@@ -71,7 +71,7 @@ const conStr = MongoConStr.builder()
   .build();
 
 console.log(conStr);
-// should output: mongodb://asdf1234@host1:7777,host2:7878,host3:9887/my-database?option1=value1&option2=value2&option3=value3
+// should output: mongodb://asdf:1234@host1:7777,host2:7878,host3:9887/my-database?option1=value1&option2=value2&option3=value3
 
 const conStrSettings = MongoConStr.create({
   username: 'myusername',
@@ -99,7 +99,7 @@ const conStrSettings = MongoConStr.create({
 });
 
 console.log(conStrSettings);
-// should output: mongodb://myusernamemysecretp@a$4w0rd@host:2018,host2:2019,host3:2020/awesomeDb?option1=value1&option2=value2&option3=value3
+// should output: mongodb://myusername:mysecretp@a$4w0rd@host:2018,host2:2019,host3:2020/awesomeDb?option1=value1&option2=value2&option3=value3
 
 console.log(MongoConStr.builder().withCredentials('me').withReplicas([{host:'h1', port:1}]).build());
 // should output: mongodb://me@h1:1
