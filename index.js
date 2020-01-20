@@ -1,6 +1,6 @@
-const { MongoConStr } = require('./lib/index');
+const { MongoConStr, MongoDbVersion } = require('./lib/index');
 
-const conStr = MongoConStr.builder()
+const conStr = MongoConStr.builder(MongoDbVersion.VERSION_34)
   .withCredentials("asdf", "1234")
   .withDatabase("my-database")
   .withUrl({host: 'host1', port: 7777})
@@ -22,7 +22,7 @@ const conStrSettings = MongoConStr.create({
   password: 'mysecretp@a$4w0rd',
   database: 'awesomeDb',
   url: {
-    host: 'host',
+    host: 'new-srv-host.mongodb_url_host.com',
     port: 2018,
   },
   replicas: [
@@ -44,4 +44,4 @@ const conStrSettings = MongoConStr.create({
 
 console.log(conStrSettings);
 
-console.log(MongoConStr.builder().withCredentials('me').withReplicas([{host:'h1', port:1}]).build());
+console.log(MongoConStr.builder(MongoDbVersion.VERSION_34).withCredentials('me').withReplicas([{host:'h1', port:1}]).build());
