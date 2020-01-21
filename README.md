@@ -2,7 +2,7 @@
 A simple mongo db connections string builder for NodeJS using the fluid builder pattern
 
 ## Contents
-The current implementation supports a minimalistic Mongo db connection string builder.
+The current implementation supports MongoDb driver 3.4 and 3.6
 
 Custom models:
 
@@ -11,6 +11,8 @@ Custom models:
 interface IMongoUrl {
   host: string;
   port: number;
+  toString(usePort?: boolean): string;
+  equals(obj: IMongoUrl): boolean;
 }
 ```
 
@@ -26,36 +28,46 @@ interface IConnectionStringSettings {
 }
 ```
 
-And the builder methods:
+`MongoDbVersion`:
 ```typescript
-class ConnectionStringBuilder {
-    constructor(settings?: IConnectionStringSettings);
-    getSettings(): IConnectionStringSettings;
-    withOptions(options: any): ConnectionStringBuilder;
-    withCredentials(username: string, password?: string): ConnectionStringBuilder;
-    withUrl(url: IMongoUrl): ConnectionStringBuilder;
-    withReplicas(urls: IMongoUrl[]): ConnectionStringBuilder;
-    withDatabase(database: string): ConnectionStringBuilder;
-    build(): string;
+enum MongoDbVersion {
+  VERSION_34 = "VERSION_34",
+  VERSION_36 = "VERSION_36"
+}
+```
+
+Builder interface
+`IConnectionStringBuilder`
+```typescript
+interface IConnectionStringBuilder {
+  getSettings(): IConnectionStringSettings;
+  withOptions(options: any): IConnectionStringBuilder;
+  withCredentials(username: string, password: string): IConnectionStringBuilder;
+  withUrl(url: IMongoUrl): IConnectionStringBuilder;
+  withReplicas(urls: IMongoUrl[]): IConnectionStringBuilder;
+  withDatabase(database: string): IConnectionStringBuilder;
+  build(): string;
 }
 ```
 
 The module exports an object:
 ```typescript
 const MongoConStr: {
-    create: (settings: IConnectionStringSettings) => string;
-    builder: () => ConnectionStringBuilder;
+  create: (settings: IConnectionStringSettings, version?: MongoDbVersion) => string;
+  builder: (version?: MongoDbVersion) => IConnectionStringBuilder;
 };
 ```
 
-- **`builder`** returns an empty `ConnectionStringBuilder` to be used
-- **`create`** takes a `IConnectionStringSettings` object, creates a `ConnectionStringBuilder` based on the settings, builds the connection string, and returns it.
+- **`builder`** returns an empty `IConnectionStringBuilder` to be used
+  - defaults to `MongoDbVersion.VERSION_36`
+- **`create`** takes a `IConnectionStringSettings` object, creates a `ConnectionStringBuilder` based on the settings, builds the connection string, and returns it,
+  - defaults to `MongoDbVersion.VERSION_36`
 
 ## Exammples:
 ```javascript
-const { MongoConStr } = require('./lib/index');
+const { MongoConStr, MongoDbVersion } = require('./lib/index');
 
-const conStr = MongoConStr.builder()
+const conStr = MongoConStr.builder(MongoDbVersion.VERSION_34)
   .withCredentials("asdf", "1234")
   .withDatabase("my-database")
   .withUrl({host: 'host1', port: 7777})
@@ -99,9 +111,9 @@ const conStrSettings = MongoConStr.create({
 });
 
 console.log(conStrSettings);
-// should output: mongodb://myusername:mysecretp@a$4w0rd@host:2018,host2:2019,host3:2020/awesomeDb?option1=value1&option2=value2&option3=value3
+// should output: mongodb+srv://myusername:mysecretp@a$4w0rd@new-srv-host.mongodb_url_host.com/awesomeDb?option1=value1&option2=value2&option3=value3
 
-console.log(MongoConStr.builder().withCredentials('me').withReplicas([{host:'h1', port:1}]).build());
+console.log(MongoConStr.builder(MongoDbVersion.VERSION_34).withCredentials('me').withReplicas([{host:'h1', port:1}]).build());
 // should output: mongodb://me@h1:1
 ```
 
