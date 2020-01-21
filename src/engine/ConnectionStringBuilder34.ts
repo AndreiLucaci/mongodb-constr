@@ -8,7 +8,7 @@ import { IConnectionStringBuilder } from './IConnectionStringBuilder';
 export class ConnectionStringBuilder34 extends ConnectionStringBuilderBase {
   protected mongodb: string = 'mongodb://';
   constructor(
-    settings: IConnectionStringSettings = new ConnectionStringSettings(), 
+    settings: IConnectionStringSettings = new ConnectionStringSettings(),
   ) {
     super(settings);
 
