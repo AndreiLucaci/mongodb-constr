@@ -2,19 +2,19 @@ import { IConnectionStringSettings } from './IConnectionStringSettings';
 import { IMongoUrl } from './IMongoUrl';
 
 export class ConnectionStringSettings implements IConnectionStringSettings {
-  public username?: string | undefined;
-  public password?: string | undefined;
-  public url?: IMongoUrl | undefined;
-  public replicas?: IMongoUrl[] | undefined;
-  public database?: string | undefined;
-  public options?: URLSearchParams | undefined;
+  public username?: string;
+  public password?: string;
+  public url?: IMongoUrl;
+  public replicas?: IMongoUrl[];
+  public database?: string;
+  public options?: URLSearchParams;
   constructor(
-    username: string | undefined,
-    password: string | undefined,
-    url: IMongoUrl | undefined,
-    replicas: IMongoUrl[] | undefined,
-    database: string | undefined,
-    options: URLSearchParams | undefined,
+    username?: string,
+    password?: string,
+    url?: IMongoUrl,
+    replicas?: IMongoUrl[],
+    database?: string,
+    options?: URLSearchParams,
   ) {
     this.username = username;
     this.password = password;
