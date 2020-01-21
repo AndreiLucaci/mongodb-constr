@@ -1,13 +1,14 @@
 import { Objs } from 'minobjs';
+
+import { ConnectionStringSettings } from '../models/ConnectionStringSettings';
+import { IConnectionStringSettings } from '../models/IConnectionStringSettings';
 import { IMongoUrl } from '../models/IMongoUrl';
 import { MongoUrl } from '../models/MongoUrl';
-import { IConnectionStringSettings } from '../models/IConnectionStringSettings';
-import { ConnectionStringSettings } from '../models/ConnectionStringSettings';
 import { IConnectionStringBuilder } from './IConnectionStringBuilder';
 
 export abstract class ConnectionStringBuilderBase
   implements IConnectionStringBuilder {
-  abstract mongodb: string;
+  protected abstract mongodb: string;
   protected settings: IConnectionStringSettings;
 
   constructor(
@@ -37,7 +38,7 @@ export abstract class ConnectionStringBuilderBase
   public withOptions(options: any): IConnectionStringBuilder {
     if (options && !new Objs().isEmpty(options)) {
       this.settings.options = new URLSearchParams();
-      for (let key of Object.keys(options)) {
+      for (const key of Object.keys(options)) {
         this.settings.options.append(key, options[key]);
       }
     }
@@ -63,6 +64,22 @@ export abstract class ConnectionStringBuilderBase
     this.settings.database = database || '';
 
     return this;
+  }
+
+  public build(): string {
+    let val = this.buildMongoDb();
+
+    val += this.buildCredentials();
+
+    val += this.buildUrl();
+
+    val += this.buildReplicas();
+
+    val += this.buildDatabase();
+
+    val += this.buildOptions();
+
+    return val;
   }
 
   protected buildMongoDb(): string {
@@ -103,22 +120,6 @@ export abstract class ConnectionStringBuilderBase
     if (this.settings.options) {
       val += `?${this.settings.options.toString()}`;
     }
-
-    return val;
-  }
-
-  public build(): string {
-    let val = this.buildMongoDb();
-
-    val += this.buildCredentials();
-
-    val += this.buildUrl();
-
-    val += this.buildReplicas();
-
-    val += this.buildDatabase();
-
-    val += this.buildOptions();
 
     return val;
   }

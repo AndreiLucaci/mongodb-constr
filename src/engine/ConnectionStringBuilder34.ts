@@ -1,15 +1,14 @@
-import { ConnectionStringBuilderBase } from './ConnectionStringBuilderBase';
 import { ConnectionStringSettings } from '../models/ConnectionStringSettings';
-import { IConnectionStringBuilder } from './IConnectionStringBuilder';
 import { IConnectionStringSettings } from '../models/IConnectionStringSettings';
 import { IMongoUrl } from '../models/IMongoUrl';
 import { MongoUrl } from '../models/MongoUrl';
-
+import { ConnectionStringBuilderBase } from './ConnectionStringBuilderBase';
+import { IConnectionStringBuilder } from './IConnectionStringBuilder';
 
 export class ConnectionStringBuilder34 extends ConnectionStringBuilderBase {
-  public mongodb: string = 'mongodb://';
+  protected mongodb: string = 'mongodb://';
   constructor(
-    settings: IConnectionStringSettings = new ConnectionStringSettings(),
+    settings: IConnectionStringSettings = new ConnectionStringSettings(), 
   ) {
     super(settings);
 

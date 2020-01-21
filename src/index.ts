@@ -1,7 +1,7 @@
-import { IConnectionStringSettings } from './models/IConnectionStringSettings';
 import { ConnectionStringBuilder34 } from './engine/ConnectionStringBuilder34';
 import { ConnectionStringBuilder36 } from './engine/ConnectionStringBuilder36';
 import { IConnectionStringBuilder } from './engine/IConnectionStringBuilder';
+import { IConnectionStringSettings } from './models/IConnectionStringSettings';
 
 export enum MongoDbVersion {
   VERSION_34 = 'VERSION_34',
@@ -32,11 +32,11 @@ const MongoConnectionString = (
 };
 
 export const MongoConStr = {
+  builder: (
+    version: MongoDbVersion = MongoDbVersion.VERSION_36,
+  ): IConnectionStringBuilder => MongoConnectionStringBuilder(version),
   create: (
     settings: IConnectionStringSettings,
     version: MongoDbVersion = MongoDbVersion.VERSION_36,
   ): string => MongoConnectionString(settings, version),
-  builder: (
-    version: MongoDbVersion = MongoDbVersion.VERSION_36,
-  ): IConnectionStringBuilder => MongoConnectionStringBuilder(version),
 };

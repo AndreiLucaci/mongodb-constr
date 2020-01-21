@@ -1,13 +1,12 @@
+import { ConnectionStringSettings } from '../models/ConnectionStringSettings';
+import { IConnectionStringSettings } from '../models/IConnectionStringSettings';
 import { IMongoUrl } from '../models/IMongoUrl';
 import { MongoUrl } from '../models/MongoUrl';
-import { IConnectionStringSettings } from '../models/IConnectionStringSettings';
-import { ConnectionStringSettings } from '../models/ConnectionStringSettings';
-
 import { ConnectionStringBuilderBase } from './ConnectionStringBuilderBase';
 import { IConnectionStringBuilder } from './IConnectionStringBuilder';
 
 export class ConnectionStringBuilder36 extends ConnectionStringBuilderBase {
-  mongodb: string = 'mongodb+srv://';
+  protected mongodb: string = 'mongodb+srv://';
   constructor(
     settings: IConnectionStringSettings = new ConnectionStringSettings(),
   ) {
