@@ -1,5 +1,5 @@
 # mongodb-constr
-[![npm version](https://badge.fury.io/js/mongodb-constr.svg)](https://badge.fury.io/js/mongodb-constr)
+[![npm version](https://badge.fury.io/js/mongodb-constr.svg)](https://badge.fury.io/js/mongodb-constr) [![Build Status](https://travis-ci.com/AndreiLucaci/mongodb-constr.svg?branch=master)](https://travis-ci.com/AndreiLucaci/mongodb-constr)
 
 [![NPM](https://nodei.co/npm/mongodb-constr.png)](https://nodei.co/npm/mongodb-constr/)
 
