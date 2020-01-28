@@ -9,7 +9,12 @@
     "mongodb connection string",
     "connection string",
     "mongo atlas",
-    "mongodb client"
+    "mongodb client",
+    "database",
+    "mongo",
+    "connection",
+    "string",
+    "builder"
   ],
   "devDependencies": {
     "prettier": "^1.19.1",
