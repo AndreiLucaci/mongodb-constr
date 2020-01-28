@@ -4,6 +4,13 @@
   "version": "4.0.2",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "keywords": [
+    "mongodb",
+    "mongodb connection string",
+    "connection string",
+    "mongo atlas",
+    "mongodb client"
+  ],
   "devDependencies": {
     "prettier": "^1.19.1",
     "tslint": "^5.20.1",
