@@ -1,4 +1,8 @@
 # mongodb-constr
+[![npm version](https://badge.fury.io/js/mongodb-constr.svg)](https://badge.fury.io/js/mongodb-constr)
+
+[![NPM](https://nodei.co/npm/mongodb-constr.png)](https://nodei.co/npm/mongodb-constr/)
+
 A simple mongo db connections string builder for NodeJS using the fluid builder pattern
 
 ## Contents
