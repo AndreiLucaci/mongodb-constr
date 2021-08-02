@@ -3,6 +3,8 @@ import { ConnectionStringBuilder36 } from './engine/ConnectionStringBuilder36';
 import { IConnectionStringBuilder } from './engine/IConnectionStringBuilder';
 import { IConnectionStringSettings } from './models/IConnectionStringSettings';
 
+export * from './models';
+
 export enum MongoDbVersion {
   VERSION_34 = 'VERSION_34',
   VERSION_36 = 'VERSION_36',
